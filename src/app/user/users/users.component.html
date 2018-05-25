@@ -1,0 +1,18 @@
+<table>
+<tbody>
+    <ng-container *ngFor="let user of userList;">
+            <tr>
+       <td>{{user.firstname}}</td>
+       <td>{{user.lastname}}</td>
+       <td>{{user.userName}}</td>
+       <td>{{user.phone}}</td>
+       <td>{{user.dob}}</td>
+    </tr>
+    </ng-container>
+    <tr *ngIf = !userList>
+        <td colspan="5">
+            {{statusMessage}}
+        </td>
+    </tr>
+</tbody>
+</table>

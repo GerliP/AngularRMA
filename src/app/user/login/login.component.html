@@ -1,0 +1,33 @@
+<div *ngIf="isLoginError" class="red-text center error-message">
+    <i class="material-icons">error</i>Incorrect Email or Password!
+  </div>
+
+<div class="box">
+  <div id="header">
+    <div id="cont-lock"><i class="material-icons lock">lock</i></div>
+    <div id="bottom-head"><h1 id="logintoregister">Login</h1></div>
+  </div> 
+   <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin(UserName.value,Password.value)" novalidate>
+    <div class="group">      
+      <input class="inputMaterial form-control" type="text" #UserName name="UserName" formControlName="userName">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Email</label>
+    </div>
+	    <div class="group">      
+      <input class="inputMaterial form-control" type="password" name="Password" #Password formControlName="password">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Password</label>
+    </div>
+
+    <button id="buttonlogintoregister" type="submit" [disabled]="!loginForm.valid">Login</button>
+  </form>
+  <div id="footer-box"><p class="footer-text">Not a member? <span class="sign-up" routerLink="/sign-up"> Sign up now </span></p>
+  </div>
+</div>
+<router-outlet></router-outlet>
+
+<p>Form value: {{ loginForm.value | json }}</p>
+  <p>Is form valid: {{ loginForm.valid | json }}</p>
+

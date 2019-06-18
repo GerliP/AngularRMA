@@ -1,6 +1,6 @@
 # RMA
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
+Project created for Angular Exam. Using Angular CLI 8.0.3. 
 
 ## Development server
 

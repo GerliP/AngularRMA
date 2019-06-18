@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
-import { UserService } from '../user.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { User } from '../user';
-
+import { AuthService } from '../../about/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,30 +11,25 @@ import { User } from '../user';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  isLoginError : boolean = false; 
-  user: User; 
- // hide=true;
+  user: User;
+  // hide=true;
 
-  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
+  constructor(private fb: FormBuilder, private router: Router, 
+    private authService: AuthService) { }
 
   onSubmitLogin(userName, password) {
-    //const result: User = Object.assign({}, this.loginForm.value);
-    this.userService.userAuthentication(userName, password)
-    .subscribe((data : any)=>{
-    //localStorage.setItem('userToken', data.access_token);
-    this.router.navigate(['home']);
-    },
-    (err : HttpErrorResponse) =>{
-      this.isLoginError = true;
-    });
+    this.authService.onSubmitLogin(userName, password);
   }
 
- 
+  onLogout(){
+    this.authService.isLoggedIn = false;
+    this.router.navigate(['home']);
+  }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      userName: ['', [Validators.required]], 
-      password: ['', [Validators.required]], 
+      userName: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
   }
 

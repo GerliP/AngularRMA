@@ -1,32 +1,49 @@
-<form [formGroup]="registerForm" (submit)="onSubmit(registerForm)" novalidate>
+<div>
+<form  [formGroup]="registerForm" [hidden]="success" (submit)="onSubmit(registerForm)"novalidate>
+  <div> 
+    <mat-form-field>
+    <input matInput id="firstname" type="text" formControlName="firstname" placeholder="First Name">
+    </mat-form-field>
+  </div> 
   <div>
-    <label>Firstname</label>
-    <input class="form-control" id="firstname" type="text" formControlName="firstname">
+    <mat-form-field>
+    <input matInput id="lastname" type="text" formControlName="lastname" placeholder="Last Name">
+  </mat-form-field>
   </div>
   <div>
-    <label>Lastname</label>
-    <input class="form-control" id="lastname" type="text" formControlName="lastname">
+    <mat-form-field>
+    <input matInput id="userName" type="email" formControlName="userName" placeholder="Email">
+    <mat-error *ngIf="userName.invalid && userName.touched">
+        Your email does not look right
+      </mat-error>
+  </mat-form-field>
   </div>
   <div>
-    <label>Email</label>
-    <input class="form-control" id="userName" type="email" formControlName="userName">
+      <mat-form-field>
+    <input matInput id="dob" type="text" formControlName="dob" placeholder="Date of Birth">
+  </mat-form-field>
   </div>
   <div>
-    <label>Date of birth</label>
-    <input class="form-control" id="dob" type="text" formControlName="dob">
+    <mat-form-field>
+    <input matInput id="phone" type="text" formControlName="phone" placeholder="Phone number">
+  </mat-form-field>
   </div>
   <div>
-    <label>Phone</label>
-    <input class="form-control" id="phone" type="text" formControlName="phone">
+    <mat-form-field>
+    <input matInput id="password" type="password" formControlName="password" placeholder="Password">
+  <mat-hint align="end">Must be min 8 characters.</mat-hint>
+    <mat-error *ngIf="password.invalid && password.touched">
+    Still not 8 characters long!
+  </mat-error>
+  </mat-form-field>
   </div>
-  <div>
-    <label>Password</label>
-    <input class="form-control" id="password" type="password" formControlName="password">
-  </div>
-
+<div>
   <button id="e2e-submit" type="submit" [disabled]="!registerForm.valid">Register</button>
+</div>
 </form>
-
-
+</div>
+<div *ngIf="success" class="notification is-success">
+  Yay! You just created a new account. 
+</div>
 <p>Form value: {{ registerForm.value | json }}</p>
   <p>Is form valid: {{ registerForm.valid | json }}</p>

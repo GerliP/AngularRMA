@@ -6,6 +6,11 @@ import { LoginComponent } from './user/login/login.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthGuard } from './auth.guard';
+import { CreateUserCanDeactivate } from './create.user.CanDeactivate';
+import { ProductsComponent } from './products/products.component';
+
+
 
 
 const routes: Routes = [
@@ -18,17 +23,19 @@ const routes: Routes = [
   },
   {
     path:'about', 
-    component:AboutComponent,
-  },
+    component:AboutComponent, canActivate: [AuthGuard],
+    children: [
+      { path: 'products', component: ProductsComponent},
+     
+    ] },
   {
     path:'login', 
-    component:LoginComponent,
+    component:LoginComponent, 
   },
-  
   {
     path:'sign-up', 
-    component:SignUpComponent
-  }, 
+    component:SignUpComponent, canDeactivate: [CreateUserCanDeactivate],
+  },
   {
     path:'**', 
     component:PageNotFoundComponent

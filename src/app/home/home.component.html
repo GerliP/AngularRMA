@@ -1,16 +1,22 @@
 
 <mat-card>
     <mat-form-field>
-        <input matInput [(ngModel)] ="search" placeholder="Search for product">
+        <input matInput [(ngModel)] ="search" placeholder="Search for product" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let product of products | productsFilter: search" [value]="product.name">
+              {{ product.name }}
+            </mat-option>
+          </mat-autocomplete>
     </mat-form-field>
 
 <br/>
 
-    <button mat-raised-button (click)="showResult()">Search</button>
-    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+<button mat-raised-button (click)="showResult()">Search</button>
+<mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
 </mat-card>
 
-<mat-card *ngIf="resultDisplay">
-    <h1>{{ resultDisplay }}</h1>
+<mat-card>
+<div *ngFor="let product of products | productsFilter: search">{{ product.name }} </div>
 </mat-card>
+
 <router-outlet></router-outlet>

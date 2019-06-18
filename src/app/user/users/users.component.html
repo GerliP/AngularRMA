@@ -1,18 +1,30 @@
-<table>
-<tbody>
+  <table >
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
     <ng-container *ngFor="let user of userList;">
-            <tr>
-       <td>{{user.firstname}}</td>
-       <td>{{user.lastname}}</td>
-       <td>{{user.userName}}</td>
-       <td>{{user.phone}}</td>
-       <td>{{user.dob}}</td>
-    </tr>
-    </ng-container>
-    <tr *ngIf = !userList>
-        <td colspan="5">
-            {{statusMessage}}
-        </td>
-    </tr>
-</tbody>
+    <td>{{ user.id }}</td>
+    <td>{{ user.firstname }}</td>
+    <td>{{ user.lastname }}</td>
+    <td>{{ user.email }}</td>
+  </ng-container>
+  <tr *ngIf="!userList">
+    <td colspan="5">
+      Loading data. Please wait...
+    </td>
+  </tr>
+<tr *ngIf="userList && userList.length==0">
+  <td colspan="5">
+    No employees to display
+  </td>
+</tr>
+  </tbody>
 </table>
+
+

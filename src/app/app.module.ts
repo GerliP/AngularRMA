@@ -12,8 +12,17 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './user/users/users.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { UserService } from './user/user.service'; 
+import { UserService } from './user/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
+import { AuthService } from './about/auth.service';
+import { CreateUserCanDeactivate } from './create.user.CanDeactivate';
+import { ProductsComponent } from './products/products.component';
+import { ProductsFilter } from './products/products.filter';
+import { ProductService } from './product/product.service';
+
+
+
 
 @NgModule({
   declarations: [
@@ -25,9 +34,10 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     UsersComponent,
     PageNotFoundComponent,
-    
-
-  ],
+    ProductsComponent,
+    ProductsFilter,
+    ProductsComponent
+   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -36,11 +46,11 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     MaterialModule,
     HttpClientModule,
-    
-    
-
   ],
-  providers: [UserService],
+  providers: [UserService, AuthGuard, AuthService, CreateUserCanDeactivate,
+     ProductService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+ }

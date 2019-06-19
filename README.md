@@ -1,6 +1,7 @@
 # RMA
 
-Project created for Angular Exam. Using Angular CLI 8.0.3. 
+Project created for Angular Exam. Using Angular CLI 8.0.3. <br/>
+Application created for Angular exam. 
 
 ## Development server
 
